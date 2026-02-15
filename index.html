@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Login</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:linear-gradient(45deg,#141e30,#243b55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    color:white;
+}
+
+.box{
+    background:rgba(0,0,0,0.7);
+    padding:30px;
+    border-radius:15px;
+    width:320px;
+    text-align:center;
+}
+
+input{
+    width:90%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#00ffcc;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#00ccaa;
+}
+
+#game{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="login">
+    <h2>🎮 تسجيل دخول اللعبة</h2>
+    <input type="text" id="username" placeholder="اسم المستخدم">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button onclick="login()">دخول</button>
+    <p id="msg"></p>
+</div>
+
+<div class="box" id="game">
+    <h2>🔥 مرحبا بك</h2>
+    <p>النقاط: <span id="score">0</span></p>
+    <button onclick="addScore()">اضغط لزيادة النقاط</button>
+    <br><br>
+    <button onclick="logout()">تسجيل خروج</button>
+</div>
+
+<script>
+let score = 0;
+
+function login(){
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if(user === "admin" && pass === "1234"){
+        document.getElementById("login").style.display="none";
+        document.getElementById("game").style.display="block";
+    }else{
+        document.getElementById("msg").innerText="❌ بيانات غير صحيحة";
+    }
+}
+
+function addScore(){
+    score++;
+    document.getElementById("score").innerText=score;
+}
+
+function logout(){
+    score=0;
+    document.getElementById("score").innerText=0;
+    document.getElementById("game").style.display="none";
+    document.getElementById("login").style.display="block";
+}
+</script>
+
+</body>
+</html>
